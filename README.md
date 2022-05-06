@@ -14,6 +14,15 @@ Coloque estes arquivos no mesmo diretorio raiz do site
 - Rode docker-compose up
 - Acesse http://localhost 
 
+## Para enviar email
+.env
+```
+MAIL_DRIVER=smtp
+MAIL_HOST=mail
+MAIL_PORT=1025
+```
+Para ler as mensagens: http://localhost/1085
+
 ### /.env
 Configuracoes usadas no docker-compose.yml
 
