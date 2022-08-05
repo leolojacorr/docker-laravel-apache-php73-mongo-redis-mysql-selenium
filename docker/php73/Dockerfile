@@ -4,6 +4,9 @@ FROM php:7.3-apache
 # instalacao extensoes php
 RUN apt-get update \
     && apt-get install -y --no-install-recommends openssl libssl-dev libcurl4-openssl-dev mc nano \
+    && apt-get install -y \
+        libzip-dev \
+        zip \
     && pecl install mongodb \
     && cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini \
     && echo "extension=mongodb.so" >> /usr/local/etc/php/php.ini \
@@ -15,7 +18,9 @@ RUN apt-get update \
 RUN  \
     docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd \
     && docker-php-ext-configure mysqli --with-mysqli=mysqlnd \
-    && docker-php-ext-install pdo_mysql mysqli
+    && docker-php-ext-install pdo_mysql mysqli \
+    && docker-php-ext-install zip
+
 
 # diretorio no servidor web da docker
 WORKDIR /var/www/
